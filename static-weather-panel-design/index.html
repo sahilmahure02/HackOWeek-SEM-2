@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Info Panel</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .weather-card {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            transition: all 0.5s ease;
+        }
+
+        .sunny {
+            --gradient-start: #f59e0b;
+            --gradient-end: #ea580c;
+        }
+
+        .cloudy {
+            --gradient-start: #64748b;
+            --gradient-end: #475569;
+        }
+
+        .rainy {
+            --gradient-start: #3b82f6;
+            --gradient-end: #1d4ed8;
+        }
+
+        .tab-active {
+            background: white;
+            color: #1e293b;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .weather-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .detail-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+    
+    <div class="w-full max-w-md">
+        <!-- Header -->
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-white mb-2">Weather Today</h1>
+            <p class="text-slate-400">Select a city to view weather</p>
+        </div>
+
+        <!-- City Tabs -->
+        <div class="bg-slate-700/50 p-1.5 rounded-2xl flex gap-1 mb-6">
+            <button onclick="selectCity(0)" id="tab-0" class="tab-btn flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-300 text-white hover:bg-white/10">
+                🗽 New York
+            </button>
+            <button onclick="selectCity(1)" id="tab-1" class="tab-btn flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-300 text-white hover:bg-white/10">
+                🗼 London
+            </button>
+            <button onclick="selectCity(2)" id="tab-2" class="tab-btn flex-1 py-3 px-4 rounded-xl font-medium transition-all duration-300 text-white hover:bg-white/10">
+                🏯 Tokyo
+            </button>
+        </div>
+
+        <!-- Weather Card -->
+        <div id="weather-card" class="weather-card sunny rounded-3xl p-8 text-white shadow-2xl">
+            <div class="fade-in" id="weather-content">
+                <!-- City Name -->
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 id="city-name" class="text-2xl font-bold">New York</h2>
+                        <p id="city-country" class="text-white/70">United States</p>
+                    </div>
+                    <div id="weather-icon" class="weather-icon text-7xl">☀️</div>
+                </div>
+
+                <!-- Temperature -->
+                <div class="mb-6">
+                    <div class="flex items-start">
+                        <span id="temperature" class="text-8xl font-light">24</span>
+                        <span class="text-4xl mt-2">°C</span>
+                    </div>
+                    <p id="condition" class="text-xl text-white/90 mt-2">Sunny</p>
+                    <p id="description" class="text-white/70">Clear sky with bright sunshine</p>
+                </div>
+
+                <!-- Weather Details -->
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="detail-card rounded-2xl p-4 text-center">
+                        <div class="text-2xl mb-1">💨</div>
+                        <p id="wind" class="text-lg font-semibold">12 km/h</p>
+                        <p class="text-xs text-white/70">Wind</p>
+                    </div>
+                    <div class="detail-card rounded-2xl p-4 text-center">
+                        <div class="text-2xl mb-1">💧</div>
+                        <p id="humidity" class="text-lg font-semibold">45%</p>
+                        <p class="text-xs text-white/70">Humidity</p>
+                    </div>
+                    <div class="detail-card rounded-2xl p-4 text-center">
+                        <div class="text-2xl mb-1">👁️</div>
+                        <p id="visibility" class="text-lg font-semibold">10 km</p>
+                        <p class="text-xs text-white/70">Visibility</p>
+                    </div>
+                </div>
+
+                <!-- Forecast -->
+                <div class="mt-6 pt-6 border-t border-white/20">
+                    <p class="text-sm text-white/70 mb-3">3-Day Forecast</p>
+                    <div id="forecast" class="grid grid-cols-3 gap-3">
+                        <!-- Forecast items will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Last Updated -->
+        <p class="text-center text-slate-500 text-sm mt-4">
+            Last updated: <span id="update-time"></span>
+        </p>
+    </div>
+
+    <script>
+        // Static weather data for 3 cities
+        const weatherData = [
+            {
+                city: "New York",
+                country: "United States",
+                temperature: 24,
+                condition: "Sunny",
+                description: "Clear sky with bright sunshine",
+                icon: "☀️",
+                theme: "sunny",
+                wind: "12 km/h",
+                humidity: "45%",
+                visibility: "10 km",
+                forecast: [
+                    { day: "Tomorrow", icon: "⛅", temp: "22°" },
+                    { day: "Wed", icon: "🌤️", temp: "25°" },
+                    { day: "Thu", icon: "☀️", temp: "27°" }
+                ]
+            },
+            {
+                city: "London",
+                country: "United Kingdom",
+                temperature: 16,
+                condition: "Cloudy",
+                description: "Overcast skies with mild breeze",
+                icon: "☁️",
+                theme: "cloudy",
+                wind: "18 km/h",
+                humidity: "72%",
+                visibility: "8 km",
+                forecast: [
+                    { day: "Tomorrow", icon: "🌧️", temp: "14°" },
+                    { day: "Wed", icon: "⛅", temp: "17°" },
+                    { day: "Thu", icon: "🌤️", temp: "19°" }
+                ]
+            },
+            {
+                city: "Tokyo",
+                country: "Japan",
+                temperature: 19,
+                condition: "Rainy",
+                description: "Light rain showers expected",
+                icon: "🌧️",
+                theme: "rainy",
+                wind: "8 km/h",
+                humidity: "85%",
+                visibility: "5 km",
+                forecast: [
+                    { day: "Tomorrow", icon: "🌧️", temp: "18°" },
+                    { day: "Wed", icon: "⛈️", temp: "17°" },
+                    { day: "Thu", icon: "🌤️", temp: "21°" }
+                ]
+            }
+        ];
+
+        let currentCity = 0;
+
+        function selectCity(index) {
+            currentCity = index;
+            updateWeatherDisplay();
+            updateTabs();
+        }
+
+        function updateTabs() {
+            document.querySelectorAll('.tab-btn').forEach((btn, index) => {
+                if (index === currentCity) {
+                    btn.classList.add('tab-active');
+                } else {
+                    btn.classList.remove('tab-active');
+                }
+            });
+        }
+
+        function updateWeatherDisplay() {
+            const data = weatherData[currentCity];
+            const card = document.getElementById('weather-card');
+            const content = document.getElementById('weather-content');
+
+            // Remove old theme classes and add new one
+            card.classList.remove('sunny', 'cloudy', 'rainy');
+            card.classList.add(data.theme);
+
+            // Trigger fade animation
+            content.classList.remove('fade-in');
+            void content.offsetWidth; // Force reflow
+            content.classList.add('fade-in');
+
+            // Update content
+            document.getElementById('city-name').textContent = data.city;
+            document.getElementById('city-country').textContent = data.country;
+            document.getElementById('temperature').textContent = data.temperature;
+            document.getElementById('condition').textContent = data.condition;
+            document.getElementById('description').textContent = data.description;
+            document.getElementById('weather-icon').textContent = data.icon;
+            document.getElementById('wind').textContent = data.wind;
+            document.getElementById('humidity').textContent = data.humidity;
+            document.getElementById('visibility').textContent = data.visibility;
+
+            // Update forecast
+            const forecastContainer = document.getElementById('forecast');
+            forecastContainer.innerHTML = data.forecast.map(day => `
+                <div class="detail-card rounded-xl p-3 text-center">
+                    <p class="text-xs text-white/70 mb-1">${day.day}</p>
+                    <div class="text-2xl mb-1">${day.icon}</div>
+                    <p class="font-semibold">${day.temp}</p>
+                </div>
+            `).join('');
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const options = { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: true 
+            };
+            document.getElementById('update-time').textContent = now.toLocaleTimeString('en-US', options);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            selectCity(0);
+            updateTime();
+            setInterval(updateTime, 60000); // Update time every minute
+        });
+    </script>
+</body>
+</html>

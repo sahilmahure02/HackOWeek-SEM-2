@@ -1,0 +1,603 @@
+export type Difficulty = "easy" | "medium" | "hard";
+
+export interface Option {
+  id: string;
+  text: string;
+}
+
+export interface Question {
+  id: number;
+  question: string;
+  options: Option[];
+  correctAnswer: string;
+  explanation: string;
+  difficulty: Difficulty;
+}
+
+export interface Quiz {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+  bgColor: string;
+  borderColor: string;
+  totalQuestions: number;
+  timeLimit: number; // in seconds
+  questions: Question[];
+}
+
+export const quizzes: Quiz[] = [
+  {
+    id: "general-science",
+    title: "General Science",
+    description: "Test your knowledge of physics, chemistry, and biology.",
+    icon: "🔬",
+    color: "from-emerald-500 to-teal-600",
+    bgColor: "bg-emerald-50",
+    borderColor: "border-emerald-200",
+    totalQuestions: 10,
+    timeLimit: 600,
+    questions: [
+      {
+        id: 1,
+        question: "What is the chemical symbol for water?",
+        options: [
+          { id: "a", text: "HO" },
+          { id: "b", text: "H₂O" },
+          { id: "c", text: "H₂O₂" },
+          { id: "d", text: "OH" },
+        ],
+        correctAnswer: "b",
+        explanation: "Water is composed of two hydrogen atoms and one oxygen atom, giving it the formula H₂O.",
+        difficulty: "easy",
+      },
+      {
+        id: 2,
+        question: "Which planet is known as the Red Planet?",
+        options: [
+          { id: "a", text: "Venus" },
+          { id: "b", text: "Jupiter" },
+          { id: "c", text: "Mars" },
+          { id: "d", text: "Saturn" },
+        ],
+        correctAnswer: "c",
+        explanation: "Mars is called the Red Planet because of the reddish iron oxide on its surface.",
+        difficulty: "easy",
+      },
+      {
+        id: 3,
+        question: "What is the powerhouse of the cell?",
+        options: [
+          { id: "a", text: "Nucleus" },
+          { id: "b", text: "Ribosome" },
+          { id: "c", text: "Mitochondria" },
+          { id: "d", text: "Golgi Apparatus" },
+        ],
+        correctAnswer: "c",
+        explanation: "Mitochondria produce ATP (energy) for the cell through cellular respiration, earning them the nickname 'powerhouse of the cell'.",
+        difficulty: "easy",
+      },
+      {
+        id: 4,
+        question: "What is the speed of light in a vacuum?",
+        options: [
+          { id: "a", text: "3 × 10⁶ m/s" },
+          { id: "b", text: "3 × 10⁸ m/s" },
+          { id: "c", text: "3 × 10¹⁰ m/s" },
+          { id: "d", text: "3 × 10⁴ m/s" },
+        ],
+        correctAnswer: "b",
+        explanation: "The speed of light in a vacuum is approximately 3 × 10⁸ meters per second (299,792,458 m/s).",
+        difficulty: "medium",
+      },
+      {
+        id: 5,
+        question: "Which element has the highest electronegativity?",
+        options: [
+          { id: "a", text: "Oxygen" },
+          { id: "b", text: "Chlorine" },
+          { id: "c", text: "Nitrogen" },
+          { id: "d", text: "Fluorine" },
+        ],
+        correctAnswer: "d",
+        explanation: "Fluorine has the highest electronegativity (3.98 on the Pauling scale) of all elements.",
+        difficulty: "medium",
+      },
+      {
+        id: 6,
+        question: "DNA stands for:",
+        options: [
+          { id: "a", text: "Deoxyribonucleic Acid" },
+          { id: "b", text: "Deoxyribose Nucleotide Acid" },
+          { id: "c", text: "Dinucleic Acid" },
+          { id: "d", text: "Denatured Nucleic Acid" },
+        ],
+        correctAnswer: "a",
+        explanation: "DNA stands for Deoxyribonucleic Acid, the molecule that carries genetic information in living organisms.",
+        difficulty: "easy",
+      },
+      {
+        id: 7,
+        question: "What is the atomic number of Carbon?",
+        options: [
+          { id: "a", text: "4" },
+          { id: "b", text: "8" },
+          { id: "c", text: "6" },
+          { id: "d", text: "12" },
+        ],
+        correctAnswer: "c",
+        explanation: "Carbon has atomic number 6, meaning it has 6 protons in its nucleus.",
+        difficulty: "easy",
+      },
+      {
+        id: 8,
+        question: "Which law states that energy cannot be created or destroyed?",
+        options: [
+          { id: "a", text: "Newton's First Law" },
+          { id: "b", text: "Law of Conservation of Energy" },
+          { id: "c", text: "Ohm's Law" },
+          { id: "d", text: "Boyle's Law" },
+        ],
+        correctAnswer: "b",
+        explanation: "The Law of Conservation of Energy states that energy cannot be created or destroyed, only converted from one form to another.",
+        difficulty: "medium",
+      },
+      {
+        id: 9,
+        question: "What type of bond holds the two strands of DNA together?",
+        options: [
+          { id: "a", text: "Covalent Bond" },
+          { id: "b", text: "Ionic Bond" },
+          { id: "c", text: "Hydrogen Bond" },
+          { id: "d", text: "Metallic Bond" },
+        ],
+        correctAnswer: "c",
+        explanation: "Hydrogen bonds between complementary base pairs (A-T and G-C) hold the two strands of DNA together.",
+        difficulty: "hard",
+      },
+      {
+        id: 10,
+        question: "The process of converting glucose to energy in the absence of oxygen is called:",
+        options: [
+          { id: "a", text: "Aerobic Respiration" },
+          { id: "b", text: "Photosynthesis" },
+          { id: "c", text: "Fermentation" },
+          { id: "d", text: "Oxidation" },
+        ],
+        correctAnswer: "c",
+        explanation: "Fermentation (anaerobic respiration) converts glucose to energy without oxygen, producing lactic acid or ethanol as byproducts.",
+        difficulty: "hard",
+      },
+    ],
+  },
+  {
+    id: "world-history",
+    title: "World History",
+    description: "Journey through ancient civilizations to modern history.",
+    icon: "🏛️",
+    color: "from-amber-500 to-orange-600",
+    bgColor: "bg-amber-50",
+    borderColor: "border-amber-200",
+    totalQuestions: 10,
+    timeLimit: 600,
+    questions: [
+      {
+        id: 1,
+        question: "In which year did World War II end?",
+        options: [
+          { id: "a", text: "1943" },
+          { id: "b", text: "1944" },
+          { id: "c", text: "1945" },
+          { id: "d", text: "1946" },
+        ],
+        correctAnswer: "c",
+        explanation: "World War II ended in 1945 — with Germany surrendering in May (V-E Day) and Japan in September (V-J Day).",
+        difficulty: "easy",
+      },
+      {
+        id: 2,
+        question: "Who was the first President of the United States?",
+        options: [
+          { id: "a", text: "Thomas Jefferson" },
+          { id: "b", text: "John Adams" },
+          { id: "c", text: "Benjamin Franklin" },
+          { id: "d", text: "George Washington" },
+        ],
+        correctAnswer: "d",
+        explanation: "George Washington was the first President of the United States, serving from 1789 to 1797.",
+        difficulty: "easy",
+      },
+      {
+        id: 3,
+        question: "The Great Wall of China was primarily built to protect against invasions from which direction?",
+        options: [
+          { id: "a", text: "South" },
+          { id: "b", text: "East" },
+          { id: "c", text: "West" },
+          { id: "d", text: "North" },
+        ],
+        correctAnswer: "d",
+        explanation: "The Great Wall was built to protect China from northern nomadic tribes such as the Mongols and Xiongnu.",
+        difficulty: "medium",
+      },
+      {
+        id: 4,
+        question: "Which empire was ruled by Julius Caesar?",
+        options: [
+          { id: "a", text: "Greek Empire" },
+          { id: "b", text: "Roman Empire" },
+          { id: "c", text: "Ottoman Empire" },
+          { id: "d", text: "Byzantine Empire" },
+        ],
+        correctAnswer: "b",
+        explanation: "Julius Caesar was a Roman general and statesman who played a critical role in the Roman Republic's transformation into the Roman Empire.",
+        difficulty: "easy",
+      },
+      {
+        id: 5,
+        question: "The French Revolution began in which year?",
+        options: [
+          { id: "a", text: "1776" },
+          { id: "b", text: "1789" },
+          { id: "c", text: "1799" },
+          { id: "d", text: "1804" },
+        ],
+        correctAnswer: "b",
+        explanation: "The French Revolution began in 1789 with the storming of the Bastille on July 14, 1789.",
+        difficulty: "medium",
+      },
+      {
+        id: 6,
+        question: "Who wrote the 'Communist Manifesto'?",
+        options: [
+          { id: "a", text: "Vladimir Lenin" },
+          { id: "b", text: "Friedrich Engels and Karl Marx" },
+          { id: "c", text: "Joseph Stalin" },
+          { id: "d", text: "Leon Trotsky" },
+        ],
+        correctAnswer: "b",
+        explanation: "The Communist Manifesto was written by Karl Marx and Friedrich Engels, published in 1848.",
+        difficulty: "medium",
+      },
+      {
+        id: 7,
+        question: "Which ancient wonder was located in Alexandria, Egypt?",
+        options: [
+          { id: "a", text: "The Colossus of Rhodes" },
+          { id: "b", text: "The Hanging Gardens" },
+          { id: "c", text: "The Lighthouse of Alexandria" },
+          { id: "d", text: "The Temple of Artemis" },
+        ],
+        correctAnswer: "c",
+        explanation: "The Lighthouse of Alexandria (Pharos) was one of the Seven Wonders of the Ancient World, built on the island of Pharos.",
+        difficulty: "hard",
+      },
+      {
+        id: 8,
+        question: "The Berlin Wall fell in which year?",
+        options: [
+          { id: "a", text: "1987" },
+          { id: "b", text: "1989" },
+          { id: "c", text: "1991" },
+          { id: "d", text: "1993" },
+        ],
+        correctAnswer: "b",
+        explanation: "The Berlin Wall fell on November 9, 1989, marking a pivotal moment in the end of the Cold War.",
+        difficulty: "medium",
+      },
+      {
+        id: 9,
+        question: "Which country was NOT part of the Allied Powers in WWII?",
+        options: [
+          { id: "a", text: "United Kingdom" },
+          { id: "b", text: "Italy" },
+          { id: "c", text: "Soviet Union" },
+          { id: "d", text: "United States" },
+        ],
+        correctAnswer: "b",
+        explanation: "Italy was initially part of the Axis powers. Though it switched sides in 1943, it started WWII as an Axis nation.",
+        difficulty: "hard",
+      },
+      {
+        id: 10,
+        question: "The Magna Carta was signed in which year?",
+        options: [
+          { id: "a", text: "1066" },
+          { id: "b", text: "1215" },
+          { id: "c", text: "1348" },
+          { id: "d", text: "1492" },
+        ],
+        correctAnswer: "b",
+        explanation: "The Magna Carta was signed by King John of England in 1215, establishing the principle that everyone, including the king, was subject to the law.",
+        difficulty: "hard",
+      },
+    ],
+  },
+  {
+    id: "mathematics",
+    title: "Mathematics",
+    description: "Challenge yourself with algebra, geometry, and logic.",
+    icon: "📐",
+    color: "from-violet-500 to-purple-600",
+    bgColor: "bg-violet-50",
+    borderColor: "border-violet-200",
+    totalQuestions: 10,
+    timeLimit: 600,
+    questions: [
+      {
+        id: 1,
+        question: "What is 15% of 200?",
+        options: [
+          { id: "a", text: "25" },
+          { id: "b", text: "30" },
+          { id: "c", text: "35" },
+          { id: "d", text: "40" },
+        ],
+        correctAnswer: "b",
+        explanation: "15% of 200 = (15/100) × 200 = 30.",
+        difficulty: "easy",
+      },
+      {
+        id: 2,
+        question: "What is the value of π (pi) to two decimal places?",
+        options: [
+          { id: "a", text: "3.12" },
+          { id: "b", text: "3.14" },
+          { id: "c", text: "3.16" },
+          { id: "d", text: "3.18" },
+        ],
+        correctAnswer: "b",
+        explanation: "Pi (π) is approximately 3.14159..., which rounds to 3.14 to two decimal places.",
+        difficulty: "easy",
+      },
+      {
+        id: 3,
+        question: "If x² = 49, what is the positive value of x?",
+        options: [
+          { id: "a", text: "6" },
+          { id: "b", text: "7" },
+          { id: "c", text: "8" },
+          { id: "d", text: "9" },
+        ],
+        correctAnswer: "b",
+        explanation: "√49 = 7, so the positive value of x is 7.",
+        difficulty: "easy",
+      },
+      {
+        id: 4,
+        question: "What is the sum of angles in a triangle?",
+        options: [
+          { id: "a", text: "90°" },
+          { id: "b", text: "180°" },
+          { id: "c", text: "270°" },
+          { id: "d", text: "360°" },
+        ],
+        correctAnswer: "b",
+        explanation: "The sum of the interior angles of any triangle is always 180°.",
+        difficulty: "easy",
+      },
+      {
+        id: 5,
+        question: "What is the derivative of x³?",
+        options: [
+          { id: "a", text: "x²" },
+          { id: "b", text: "3x" },
+          { id: "c", text: "3x²" },
+          { id: "d", text: "x³/3" },
+        ],
+        correctAnswer: "c",
+        explanation: "Using the power rule: d/dx(xⁿ) = nxⁿ⁻¹, so d/dx(x³) = 3x².",
+        difficulty: "medium",
+      },
+      {
+        id: 6,
+        question: "What is the probability of getting a head when flipping a fair coin?",
+        options: [
+          { id: "a", text: "1/4" },
+          { id: "b", text: "1/3" },
+          { id: "c", text: "1/2" },
+          { id: "d", text: "2/3" },
+        ],
+        correctAnswer: "c",
+        explanation: "A fair coin has two equally likely outcomes (heads and tails), so the probability of heads is 1/2 = 0.5.",
+        difficulty: "easy",
+      },
+      {
+        id: 7,
+        question: "What is the result of log₁₀(1000)?",
+        options: [
+          { id: "a", text: "2" },
+          { id: "b", text: "3" },
+          { id: "c", text: "4" },
+          { id: "d", text: "10" },
+        ],
+        correctAnswer: "b",
+        explanation: "log₁₀(1000) = log₁₀(10³) = 3.",
+        difficulty: "medium",
+      },
+      {
+        id: 8,
+        question: "Which of the following is a prime number?",
+        options: [
+          { id: "a", text: "51" },
+          { id: "b", text: "57" },
+          { id: "c", text: "59" },
+          { id: "d", text: "63" },
+        ],
+        correctAnswer: "c",
+        explanation: "59 is a prime number. 51=3×17, 57=3×19, 63=9×7. 59 has no factors other than 1 and itself.",
+        difficulty: "medium",
+      },
+      {
+        id: 9,
+        question: "In a right triangle, if one angle is 30°, the other non-right angle is:",
+        options: [
+          { id: "a", text: "30°" },
+          { id: "b", text: "45°" },
+          { id: "c", text: "60°" },
+          { id: "d", text: "90°" },
+        ],
+        correctAnswer: "c",
+        explanation: "The sum of angles in a triangle is 180°. With angles of 90° and 30°, the third angle = 180 - 90 - 30 = 60°.",
+        difficulty: "medium",
+      },
+      {
+        id: 10,
+        question: "What is the value of 0! (zero factorial)?",
+        options: [
+          { id: "a", text: "0" },
+          { id: "b", text: "1" },
+          { id: "c", text: "Undefined" },
+          { id: "d", text: "∞" },
+        ],
+        correctAnswer: "b",
+        explanation: "By definition, 0! = 1. This is a fundamental mathematical convention used in combinatorics and probability.",
+        difficulty: "hard",
+      },
+    ],
+  },
+  {
+    id: "technology",
+    title: "Technology & CS",
+    description: "Explore computers, programming, and the digital world.",
+    icon: "💻",
+    color: "from-sky-500 to-blue-600",
+    bgColor: "bg-sky-50",
+    borderColor: "border-sky-200",
+    totalQuestions: 10,
+    timeLimit: 600,
+    questions: [
+      {
+        id: 1,
+        question: "What does HTML stand for?",
+        options: [
+          { id: "a", text: "HyperText Markup Language" },
+          { id: "b", text: "HighText Machine Language" },
+          { id: "c", text: "HyperText Machine Language" },
+          { id: "d", text: "Hyperlink and Text Markup Language" },
+        ],
+        correctAnswer: "a",
+        explanation: "HTML stands for HyperText Markup Language, the standard language for creating web pages.",
+        difficulty: "easy",
+      },
+      {
+        id: 2,
+        question: "Which data structure operates on a LIFO (Last In, First Out) principle?",
+        options: [
+          { id: "a", text: "Queue" },
+          { id: "b", text: "Stack" },
+          { id: "c", text: "Linked List" },
+          { id: "d", text: "Tree" },
+        ],
+        correctAnswer: "b",
+        explanation: "A Stack operates on LIFO — the last element added is the first one removed, like a stack of plates.",
+        difficulty: "medium",
+      },
+      {
+        id: 3,
+        question: "What is the time complexity of binary search?",
+        options: [
+          { id: "a", text: "O(n)" },
+          { id: "b", text: "O(n²)" },
+          { id: "c", text: "O(log n)" },
+          { id: "d", text: "O(1)" },
+        ],
+        correctAnswer: "c",
+        explanation: "Binary search has O(log n) time complexity because it halves the search space with each comparison.",
+        difficulty: "medium",
+      },
+      {
+        id: 4,
+        question: "What does CPU stand for?",
+        options: [
+          { id: "a", text: "Central Processing Unit" },
+          { id: "b", text: "Core Processing Utility" },
+          { id: "c", text: "Computer Processing Unit" },
+          { id: "d", text: "Central Program Unit" },
+        ],
+        correctAnswer: "a",
+        explanation: "CPU stands for Central Processing Unit — the primary component of a computer that executes instructions.",
+        difficulty: "easy",
+      },
+      {
+        id: 5,
+        question: "Which programming language is primarily used for iOS app development?",
+        options: [
+          { id: "a", text: "Kotlin" },
+          { id: "b", text: "Java" },
+          { id: "c", text: "Swift" },
+          { id: "d", text: "C#" },
+        ],
+        correctAnswer: "c",
+        explanation: "Swift is Apple's primary programming language for iOS, macOS, watchOS, and tvOS development.",
+        difficulty: "easy",
+      },
+      {
+        id: 6,
+        question: "What does SQL stand for?",
+        options: [
+          { id: "a", text: "Structured Query Language" },
+          { id: "b", text: "Simple Question Language" },
+          { id: "c", text: "Standard Query Logic" },
+          { id: "d", text: "Sequential Query Language" },
+        ],
+        correctAnswer: "a",
+        explanation: "SQL stands for Structured Query Language, used for managing and querying relational databases.",
+        difficulty: "easy",
+      },
+      {
+        id: 7,
+        question: "In object-oriented programming, what is 'encapsulation'?",
+        options: [
+          { id: "a", text: "Inheriting properties from a parent class" },
+          { id: "b", text: "Bundling data and methods that operate on that data within a class" },
+          { id: "c", text: "Defining multiple methods with the same name" },
+          { id: "d", text: "Creating instances of a class" },
+        ],
+        correctAnswer: "b",
+        explanation: "Encapsulation is the bundling of data (attributes) and methods that operate on that data within a single unit (class), restricting direct access.",
+        difficulty: "medium",
+      },
+      {
+        id: 8,
+        question: "What is the base of the binary number system?",
+        options: [
+          { id: "a", text: "8" },
+          { id: "b", text: "10" },
+          { id: "c", text: "16" },
+          { id: "d", text: "2" },
+        ],
+        correctAnswer: "d",
+        explanation: "The binary number system uses base 2, meaning it only uses two digits: 0 and 1.",
+        difficulty: "easy",
+      },
+      {
+        id: 9,
+        question: "Which sorting algorithm has the best average-case time complexity?",
+        options: [
+          { id: "a", text: "Bubble Sort" },
+          { id: "b", text: "Selection Sort" },
+          { id: "c", text: "Merge Sort" },
+          { id: "d", text: "Insertion Sort" },
+        ],
+        correctAnswer: "c",
+        explanation: "Merge Sort has O(n log n) average and worst-case complexity, which is optimal for comparison-based sorting algorithms.",
+        difficulty: "hard",
+      },
+      {
+        id: 10,
+        question: "What does REST stand for in web development?",
+        options: [
+          { id: "a", text: "Remote Execution State Transfer" },
+          { id: "b", text: "Representational State Transfer" },
+          { id: "c", text: "Reactive State Transfer" },
+          { id: "d", text: "Resource Exchange State Technology" },
+        ],
+        correctAnswer: "b",
+        explanation: "REST stands for Representational State Transfer — an architectural style for designing networked applications, especially APIs.",
+        difficulty: "hard",
+      },
+    ],
+  },
+];
