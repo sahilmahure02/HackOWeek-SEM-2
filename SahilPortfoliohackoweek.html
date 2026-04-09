@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAHIL MAHURE | BRUTALIST PORTFOLIO</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Syne (for massive headers) and Space Mono (for tech text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Syne"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    },
+                    colors: {
+                        base: '#FFFFFF', // Pure White
+                        ink: '#000000',  // Pure Black
+                        blood: '#FF0000',// Pure Red
+                    },
+                    boxShadow: {
+                        'brutal': '8px 8px 0px 0px #000000',
+                        'brutal-hover': '4px 4px 0px 0px #000000',
+                        'brutal-red': '8px 8px 0px 0px #FF0000',
+                        'brutal-red-hover': '4px 4px 0px 0px #FF0000',
+                    },
+                    borderWidth: {
+                        '4': '4px',
+                        '8': '8px',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #FFFFFF;
+            color: #000000;
+            overflow-x: hidden;
+            /* A subtle dotted background using pure black */
+            background-image: radial-gradient(#000000 2px, transparent 2px);
+            background-size: 40px 40px;
+        }
+        
+        /* Aggressive selection styling */
+        ::selection {
+            background: #FF0000;
+            color: #FFFFFF;
+        }
+
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 15s linear infinite;
+            display: inline-block;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased border-8 border-ink min-h-screen m-2 md:m-4 bg-base">
+
+    <!-- Navigation -->
+    <nav class="fixed top-2 md:top-4 left-2 right-2 md:left-4 md:right-4 z-50 bg-base border-b-4 border-ink" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="text-4xl font-extrabold tracking-tighter text-ink uppercase bg-blood text-base px-2 py-1 transform -skew-x-12">
+                    S.M.
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center font-mono font-bold uppercase text-lg">
+                    <a href="#about" class="hover:text-blood hover:underline decoration-4 underline-offset-4 transition-all">About</a>
+                    <a href="#skills" class="hover:text-blood hover:underline decoration-4 underline-offset-4 transition-all">Skills</a>
+                    <a href="#projects" class="hover:text-blood hover:underline decoration-4 underline-offset-4 transition-all">Work</a>
+                    <a href="#contact" class="px-6 py-2 bg-ink text-base border-4 border-ink hover:bg-blood hover:text-base shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all">
+                        Connect
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 border-4 border-ink bg-blood text-base shadow-brutal active:translate-y-1 active:shadow-brutal-hover focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-base border-t-4 border-ink absolute w-full shadow-brutal font-mono uppercase font-bold text-xl">
+            <div class="flex flex-col text-center">
+                <a href="#about" class="py-4 border-b-4 border-ink hover:bg-blood hover:text-base">About</a>
+                <a href="#skills" class="py-4 border-b-4 border-ink hover:bg-blood hover:text-base">Skills</a>
+                <a href="#projects" class="py-4 border-b-4 border-ink hover:bg-blood hover:text-base">Projects</a>
+                <a href="#contact" class="py-4 bg-ink text-base hover:bg-blood">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Marquee Banner -->
+    <div class="fixed top-24 md:top-28 left-2 right-2 md:left-4 md:right-4 z-40 bg-blood text-base border-y-4 border-ink overflow-hidden py-2 font-mono font-bold text-sm tracking-widest uppercase flex">
+        <div class="animate-marquee">
+            <span>SOFTWARE DEVELOPER • NAGPUR • 2ND SEMESTER • FRONTEND • BACKEND • PYTHON • REACT • </span>
+            <span>SOFTWARE DEVELOPER • NAGPUR • 2ND SEMESTER • FRONTEND • BACKEND • PYTHON • REACT • </span>
+            <span>SOFTWARE DEVELOPER • NAGPUR • 2ND SEMESTER • FRONTEND • BACKEND • PYTHON • REACT • </span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-48 pb-20 md:pt-64 md:pb-32 px-4 min-h-screen flex items-center bg-base relative z-10">
+        <div class="max-w-6xl mx-auto w-full">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                
+                <div class="md:col-span-8 space-y-6">
+                    <div class="inline-block px-4 py-2 bg-ink text-base font-mono font-bold uppercase border-4 border-ink shadow-brutal-red transform -rotate-2">
+                        System.out.println("Hello World");
+                    </div>
+                    
+                    <h1 class="text-7xl md:text-9xl font-extrabold uppercase leading-none tracking-tighter">
+                        Sahil <br>
+                        <span class="text-blood mix-blend-multiply" style="text-shadow: 6px 6px 0px #000;">Mahure</span>
+                    </h1>
+                    
+                    <p class="font-mono text-xl md:text-2xl font-bold max-w-2xl border-l-8 border-blood pl-6 py-2 uppercase bg-base">
+                        Bridging aggressive logic with raw, unfiltered creativity. Building scalable web applications.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-6 pt-8 font-mono uppercase font-bold text-lg">
+                        <a href="#projects" class="px-8 py-4 bg-blood text-base border-4 border-ink shadow-brutal hover:-translate-y-1 hover:shadow-[12px_12px_0px_0px_#000000] transition-all active:translate-y-1 active:shadow-brutal-hover">
+                            View Projects
+                        </a>
+                        <div class="flex gap-4">
+                            <a href="#" class="p-4 bg-base border-4 border-ink shadow-brutal hover:bg-ink hover:text-base transition-all active:translate-y-1 active:shadow-brutal-hover">
+                                <i data-lucide="github" class="w-7 h-7"></i>
+                            </a>
+                            <a href="#" class="p-4 bg-base border-4 border-ink shadow-brutal hover:bg-ink hover:text-base transition-all active:translate-y-1 active:shadow-brutal-hover">
+                                <i data-lucide="linkedin" class="w-7 h-7"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abstract Brutalist Graphic -->
+                <div class="hidden md:flex md:col-span-4 justify-center items-center relative">
+                    <div class="w-full aspect-square border-8 border-ink bg-blood shadow-brutal relative z-10 p-4 flex flex-col justify-between">
+                        <div class="flex justify-between">
+                            <div class="w-8 h-8 bg-ink rounded-none"></div>
+                            <div class="w-8 h-8 bg-ink rounded-full"></div>
+                        </div>
+                        <i data-lucide="cpu" class="w-32 h-32 text-ink mx-auto stroke-[1.5]"></i>
+                        <div class="font-mono text-ink font-bold text-center border-t-4 border-ink pt-2 uppercase">
+                            // 0xSTATUS: ACTIVE
+                        </div>
+                    </div>
+                    <!-- Background accent square -->
+                    <div class="absolute -top-8 -right-8 w-full aspect-square border-8 border-ink bg-base z-0 pattern-dots">
+                        <svg class="w-full h-full text-ink opacity-20" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+                                </pattern>
+                            </defs>
+                            <rect x="0" y="0" width="100%" height="100%" fill="url(#dots)"></rect>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 border-y-8 border-ink bg-base relative z-10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row border-4 border-ink shadow-brutal bg-base">
+                
+                <!-- Left Sidebar / Heading -->
+                <div class="w-full md:w-1/3 bg-blood text-base border-b-4 md:border-b-0 md:border-r-4 border-ink p-8 flex flex-col justify-between">
+                    <h2 class="text-6xl font-extrabold uppercase break-words leading-none">
+                        About<br>The<br>Dev
+                    </h2>
+                    <i data-lucide="arrow-down-right" class="w-16 h-16 mt-8"></i>
+                </div>
+
+                <!-- Right Content -->
+                <div class="w-full md:w-2/3 p-8 md:p-12 space-y-8 bg-base">
+                    <p class="font-mono text-2xl font-bold uppercase leading-relaxed">
+                        Currently destroying bugs and building logic in my <span class="bg-ink text-base px-2">2nd semester</span> of computer science at Nagpur.
+                    </p>
+                    <p class="font-sans text-xl font-bold">
+                        I approach coding as a structural discipline. Whether it's crafting an algorithm or styling a brutalist user interface, I treat code as a raw material to be molded into something functional and unapologetic. When I step away from the keyboard, I'm usually exploring new tech trends.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 font-mono">
+                        <div class="border-4 border-ink p-4 flex items-center gap-4 hover:bg-blood hover:text-base transition-colors group">
+                            <i data-lucide="terminal-square" class="w-8 h-8 group-hover:animate-pulse"></i>
+                            <div>
+                                <p class="font-bold uppercase text-sm">Role</p>
+                                <p class="font-extrabold text-xl uppercase">Developer</p>
+                            </div>
+                        </div>
+                        <div class="border-4 border-ink p-4 flex items-center gap-4 hover:bg-blood hover:text-base transition-colors group">
+                            <i data-lucide="map-pin" class="w-8 h-8 group-hover:animate-bounce"></i>
+                            <div>
+                                <p class="font-bold uppercase text-sm">Location</p>
+                                <p class="font-extrabold text-xl uppercase">Nagpur, IN</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-base relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-6xl md:text-8xl font-extrabold uppercase mb-16 text-center text-ink stroke-text">
+                <span class="bg-ink text-base px-4 py-2 border-4 border-ink shadow-brutal-red transform rotate-2 inline-block">Arsenal</span>
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Skill 1 -->
+                <div class="bg-base border-4 border-ink shadow-brutal hover:shadow-brutal-hover hover:translate-y-2 transition-all p-8 flex flex-col items-center text-center group cursor-crosshair">
+                    <div class="w-20 h-20 bg-base border-4 border-ink flex items-center justify-center mb-6 group-hover:bg-blood group-hover:text-base transition-colors">
+                        <i data-lucide="monitor" class="w-10 h-10 stroke-[2.5]"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold uppercase mb-2">Frontend</h3>
+                    <p class="font-mono font-bold uppercase text-blood">HTML / CSS / React</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="bg-base border-4 border-ink shadow-brutal hover:shadow-brutal-hover hover:translate-y-2 transition-all p-8 flex flex-col items-center text-center group cursor-crosshair">
+                    <div class="w-20 h-20 bg-ink text-base border-4 border-ink flex items-center justify-center mb-6 group-hover:bg-blood transition-colors">
+                        <i data-lucide="file-json" class="w-10 h-10 stroke-[2.5]"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold uppercase mb-2">Logic</h3>
+                    <p class="font-mono font-bold uppercase text-blood">JavaScript / ES6</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="bg-blood text-base border-4 border-ink shadow-brutal hover:shadow-brutal-hover hover:translate-y-2 transition-all p-8 flex flex-col items-center text-center group cursor-crosshair">
+                    <div class="w-20 h-20 bg-base text-ink border-4 border-ink flex items-center justify-center mb-6 group-hover:bg-ink group-hover:text-base transition-colors">
+                        <i data-lucide="terminal" class="w-10 h-10 stroke-[2.5]"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold uppercase mb-2">Core</h3>
+                    <p class="font-mono font-bold uppercase text-ink">C++ / Python</p>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="bg-base border-4 border-ink shadow-brutal hover:shadow-brutal-hover hover:translate-y-2 transition-all p-8 flex flex-col items-center text-center group cursor-crosshair">
+                    <div class="w-20 h-20 bg-base border-4 border-ink flex items-center justify-center mb-6 group-hover:bg-blood group-hover:text-base transition-colors">
+                        <i data-lucide="pen-tool" class="w-10 h-10 stroke-[2.5]"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold uppercase mb-2">Design</h3>
+                    <p class="font-mono font-bold uppercase text-blood">UI/UX / Brutalism</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-ink text-base border-y-8 border-ink relative z-10 overflow-hidden">
+        <!-- Background Grid inside dark section -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: linear-gradient(to right, #FFFFFF 2px, transparent 2px), linear-gradient(to bottom, #FFFFFF 2px, transparent 2px); background-size: 50px 50px;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b-4 border-base pb-8">
+                <h2 class="text-6xl md:text-8xl font-extrabold uppercase">
+                    Work <br>
+                    <span class="text-blood">Logs</span>
+                </h2>
+                <a href="#" class="hidden md:flex font-mono text-xl font-bold uppercase border-4 border-base px-6 py-3 hover:bg-blood hover:border-blood transition-colors items-center gap-2">
+                    Access GitHub <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Project 1 -->
+                <div class="bg-base text-ink border-4 border-base p-6 shadow-brutal-red group hover:-translate-y-2 transition-transform">
+                    <div class="border-4 border-ink aspect-video flex items-center justify-center bg-blood relative overflow-hidden mb-6">
+                        <!-- Brutalist check pattern -->
+                        <div class="absolute inset-0 opacity-30" style="background-image: repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), repeating-linear-gradient(45deg, #000 25%, #fff 25%, #fff 75%, #000 75%, #000); background-position: 0 0, 20px 20px; background-size: 40px 40px;"></div>
+                        <h3 class="text-6xl font-extrabold text-base bg-ink px-4 py-2 relative z-10 uppercase transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">C. Connect</h3>
+                    </div>
+                    
+                    <div class="flex gap-2 mb-4 font-mono text-xs font-bold uppercase">
+                        <span class="px-3 py-1 border-2 border-ink bg-ink text-base">React</span>
+                        <span class="px-3 py-1 border-2 border-ink bg-base">Tailwind</span>
+                    </div>
+                    
+                    <h4 class="text-3xl font-extrabold uppercase mb-4">Campus Connect</h4>
+                    <p class="font-mono font-bold mb-6 text-lg border-l-4 border-blood pl-4">
+                        A dynamic web application designed to help students discover and register for college events seamlessly.
+                    </p>
+                    
+                    <a href="#" class="inline-flex items-center gap-2 font-bold uppercase text-xl border-b-4 border-ink hover:text-blood hover:border-blood transition-colors pb-1">
+                        Execute <i data-lucide="play" class="w-5 h-5 fill-current"></i>
+                    </a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-base text-ink border-4 border-base p-6 shadow-brutal-red group hover:-translate-y-2 transition-transform">
+                    <div class="border-4 border-ink aspect-video flex items-center justify-center bg-ink relative overflow-hidden mb-6">
+                        <!-- Danger Stripes -->
+                        <div class="absolute inset-0 opacity-80" style="background: repeating-linear-gradient(-45deg, #FF0000, #FF0000 20px, #000000 20px, #000000 40px);"></div>
+                        <h3 class="text-5xl font-extrabold text-ink bg-base px-4 py-2 border-4 border-ink relative z-10 uppercase transform rotate-3 group-hover:rotate-0 transition-transform duration-300">Analyzer.py</h3>
+                    </div>
+                    
+                    <div class="flex gap-2 mb-4 font-mono text-xs font-bold uppercase">
+                        <span class="px-3 py-1 border-2 border-ink bg-blood text-base">Python</span>
+                        <span class="px-3 py-1 border-2 border-ink bg-base">CLI</span>
+                    </div>
+                    
+                    <h4 class="text-3xl font-extrabold uppercase mb-4">Data Analyzer</h4>
+                    <p class="font-mono font-bold mb-6 text-lg border-l-4 border-ink pl-4">
+                        A raw command-line tool built to parse, process, and visualize basic datasets for first-year lab assignments.
+                    </p>
+                    
+                    <a href="#" class="inline-flex items-center gap-2 font-bold uppercase text-xl border-b-4 border-ink hover:text-blood hover:border-blood transition-colors pb-1">
+                        Execute <i data-lucide="play" class="w-5 h-5 fill-current"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 bg-blood relative z-10 overflow-hidden">
+        <!-- Giant background text -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-20">
+            <h2 class="text-[15rem] font-extrabold uppercase text-ink leading-none">TRANSMIT</h2>
+        </div>
+
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-base border-8 border-ink shadow-brutal p-8 md:p-16">
+                
+                <h2 class="text-5xl md:text-7xl font-extrabold uppercase mb-2 leading-none text-ink">
+                    Ping Me
+                </h2>
+                <p class="font-mono font-bold text-xl uppercase mb-10 border-b-4 border-ink pb-4">
+                    Collab or criticize. Drop a message below.
+                </p>
+                
+                <form id="contact-form" class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="font-mono font-bold uppercase text-sm bg-ink text-base px-2 py-1 inline-block">IDENTIFICATION</label>
+                        <input type="text" placeholder="NAME" required class="w-full px-6 py-4 bg-base border-4 border-ink font-mono font-bold uppercase text-xl placeholder-ink focus:outline-none focus:bg-blood focus:text-base focus:placeholder-base transition-colors rounded-none">
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label class="font-mono font-bold uppercase text-sm bg-ink text-base px-2 py-1 inline-block">RETURN ADDRESS</label>
+                        <input type="email" placeholder="EMAIL" required class="w-full px-6 py-4 bg-base border-4 border-ink font-mono font-bold uppercase text-xl placeholder-ink focus:outline-none focus:bg-blood focus:text-base focus:placeholder-base transition-colors rounded-none">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="font-mono font-bold uppercase text-sm bg-ink text-base px-2 py-1 inline-block">PAYLOAD</label>
+                        <textarea rows="5" placeholder="MESSAGE DATA" required class="w-full px-6 py-4 bg-base border-4 border-ink font-mono font-bold uppercase text-xl placeholder-ink focus:outline-none focus:bg-blood focus:text-base focus:placeholder-base transition-colors resize-none rounded-none"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full py-6 bg-ink text-base font-extrabold text-2xl uppercase border-4 border-ink hover:bg-blood shadow-brutal hover:shadow-brutal-hover hover:translate-y-1 transition-all flex justify-center items-center gap-4">
+                        Fire Output <i data-lucide="zap" class="w-8 h-8 fill-current"></i>
+                    </button>
+                </form>
+
+                <div id="form-success" class="hidden mt-8 bg-ink text-base font-mono font-bold text-xl uppercase p-6 text-center border-4 border-ink shadow-brutal-red">
+                    > STATUS 200: TRANSMISSION SUCCESSFUL
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-base border-t-8 border-ink py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+            
+            <div class="font-mono font-bold uppercase text-xl">
+                <p>&copy; <span id="year"></span> <span class="bg-ink text-base px-2">SAHIL MAHURE</span></p>
+                <p class="text-sm mt-2">NO ROUNDED CORNERS WERE HARMED IN THE MAKING OF THIS SITE.</p>
+            </div>
+            
+            <div class="flex gap-6 font-mono font-bold uppercase text-xl">
+                <a href="#" class="border-b-4 border-transparent hover:border-blood hover:text-blood transition-colors">GitHub</a>
+                <a href="#" class="border-b-4 border-transparent hover:border-blood hover:text-blood transition-colors">LinkedIn</a>
+                <a href="#" class="border-b-4 border-transparent hover:border-blood hover:text-blood transition-colors">Twitter</a>
+            </div>
+            
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons with heavy strokes
+        lucide.createIcons({ strokeWidth: 3 });
+
+        // Footer Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Form Submit Mockup
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            contactForm.style.display = 'none';
+            formSuccess.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
